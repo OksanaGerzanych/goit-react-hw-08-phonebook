@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/operations';
-import { selectContacts } from 'redux/selectors';
+import { addContact } from 'redux/contacts/operations';
+import { selectContacts } from 'redux/contacts/selectors';
 import { useSelector } from 'react-redux/es/exports';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Formik, Field } from 'formik';
