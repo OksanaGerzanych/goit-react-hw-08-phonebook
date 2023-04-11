@@ -1,5 +1,4 @@
-export const Home = () => {
-    return (
-        
-    )
+export default function Home() {
+   
+    
 }

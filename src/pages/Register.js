@@ -1,5 +1,3 @@
-export const Register = () => {
-    return (
-    
-)
+export default function Register() {
+  
 }

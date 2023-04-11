@@ -1,13 +1,17 @@
 // import { useDispatch, useSelector  } from 'react-redux'; 
 // import { useEffect } from 'react';
-// import { selectIsLoading, selectError } from 'redux/contacts/selectors';
-import { Contacts } from 'pages/Contacts';
-import { Register } from 'pages/Register';
-import { Home } from 'pages/Home';
-import { LogIn } from 'pages/LogIn';
+import { SharedLayout } from './SharedLayout/SharedLayout';
 import { Route, Routes } from 'react-router-dom';
+import { lazy } from "react";
 
-export function App() {
+const HomePage = lazy(() => import('../pages/Home'));
+const RegisterPage = lazy(() => import('../pages/Register'));
+const LoginPage = lazy(() => import('../pages/LogIn'));
+const ContactsPage = lazy(() => import('../pages/Contacts'));
+
+
+
+export const App = () => {
   // const dispatch = useDispatch();
   // const isLoading = useSelector(selectIsLoading);
   // const error = useSelector(selectError);
@@ -18,11 +22,12 @@ export function App() {
 
   return (
     <Routes>
-      <Route path='/' element={<Home />}/>
-      <Route path='/contacts' element={ <Contacts />}/>
-      <Route path='/register' element={ <Register />}/>
-      <Route path='/login' element={ <LogIn />}/>
-      <Route path="*" element={<Home />}/>
+    <Route path="/" element={<SharedLayout />}>
+      <Route index element={<HomePage />} />
+      <Route path="/contacts" element={<ContactsPage  />}/>
+      <Route path="/register" element={<RegisterPage />}/>
+      <Route path="/login" element={<LoginPage />}/>
+    </Route>
   </Routes>
   );
 }
