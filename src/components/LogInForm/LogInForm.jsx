@@ -1,6 +1,8 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { FormField } from './LogInForm.styled';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { logIn } from 'redux/auth/operations';
 
 const LogInSchema = Yup.object().shape({
   email: Yup.string()
@@ -13,11 +15,19 @@ const LogInSchema = Yup.object().shape({
     .matches(/[0-9]/, 'Password requires a number')
     .matches(/[a-z]/, 'Password requires a lowercase letter')
     .matches(/[A-Z]/, 'Password requires an uppercase letter')
-    .matches(/[^\w]/, 'Password requires a symbol')
     .required('Please, enter password'),
 });
 
 export const LogInForm = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values, actions) => {
+    console.log(values)
+    dispatch(logIn(values))
+    actions.resetForm();
+  }
+
+
   return (
     <div>
       <Formik
@@ -26,9 +36,7 @@ export const LogInForm = () => {
           password: '',
         }}
         validationSchema={LogInSchema}
-        onSubmit={values => {
-          console.log(values);
-        }}
+        onSubmit={handleSubmit}
       >
         <Form>
           <FormField>

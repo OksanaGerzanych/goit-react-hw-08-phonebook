@@ -1,6 +1,8 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { FormField } from './RegisterForm.styled';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { register } from 'redux/auth/operations';
 
 const RegisterSchema = Yup.object().shape({
   name: Yup.string()
@@ -18,28 +20,33 @@ const RegisterSchema = Yup.object().shape({
     .matches(/[0-9]/, 'Password requires a number')
     .matches(/[a-z]/, 'Password requires a lowercase letter')
     .matches(/[A-Z]/, 'Password requires an uppercase letter')
-    .matches(/[^\w]/, 'Password requires a symbol')
     .required('Please, enter password'),
 });
 
 export const RegisterForm = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values, actions) => {
+    console.log(values)
+    dispatch(register(values))
+    actions.resetForm();
+}
+
   return (
     <div>
       <Formik
         initialValues={{
-          username: '',
+          name: '',
           email: '',
           password: '',
         }}
         validationSchema={RegisterSchema}
-        onSubmit={values => {
-          console.log(values);
-        }}
+        onSubmit={handleSubmit}
       >
         <Form>
           <FormField>
             Name
-            <Field name="name" placeholder="name" type="text" />
+            <Field type="text" name="name" placeholder="name" />
             <ErrorMessage name="name" component="span" />
           </FormField>
 

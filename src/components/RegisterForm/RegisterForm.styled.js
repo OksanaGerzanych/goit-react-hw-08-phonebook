@@ -3,7 +3,6 @@ import { Form as FormikForm,  ErrorMessage as FormikError } from 'formik';
 
 
 export const Form = styled(FormikForm)`
-
  width: 320px;
 `
 export const FormField = styled.label`
