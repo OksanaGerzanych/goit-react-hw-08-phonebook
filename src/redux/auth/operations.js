@@ -12,16 +12,15 @@ const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
-
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.post('/users/signup', credentials);
       setAuthHeader(response.data.token);
-      return response.data; 
+      return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);  
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -32,22 +31,45 @@ export const logIn = createAsyncThunk(
     try {
       const response = await axios.post('/users/login', credentials);
       setAuthHeader(response.data.token);
-      return response.data; 
+      return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);  
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
+export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    await axios.post('/users/logout');
+    clearAuthHeader();
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
 
-export const logOut = createAsyncThunk(
-  'auth/logout',
+export const refreshUser = createAsyncThunk(
+  'auth/refresh',
   async (_, thunkAPI) => {
+     const state = thunkAPI.getState();
+     const persistedToken = state.auth.token;
+    //  if (!persistedToken) return;
+     console.log(persistedToken)
+    // Це теж саме що і два нижні рядки
+
+    // const { token } = thunkAPI.getState().auth;
+    //if (token === null) return 
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue('No valid token')
+    }
+     //console.log(token)
+     
+    setAuthHeader(persistedToken);
+    
     try {
-      await axios.post('/users/logout');
-      clearAuthHeader();
+      const response = await axios.get('/users/me');
+      return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);  
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
