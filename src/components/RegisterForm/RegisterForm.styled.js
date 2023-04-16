@@ -1,20 +1,18 @@
 import styled from "styled-components";
-import { Form as FormikForm,  ErrorMessage as FormikError } from 'formik';
 
-
-export const Form = styled(FormikForm)`
- width: 320px;
+export const Container = styled.div`
+text-align: center;
 `
-export const FormField = styled.label`
-  display: flex;
-  gap: 2px;
-  flex-direction: column;
-  width: 270px;
-  font-size: 18px;
-`;
-
-
-export const ErrorMessage = styled(FormikError)`
-color: tomato;
-font-size: 10px;
+export const Title = styled.h1`
+font-family: 'Roboto', sans-serif;
 `
+
+
+
+
+
+
+//import { Form as FormikForm } from 'formik';
+// export const Formm = styled(FormikForm)`
+// `
+

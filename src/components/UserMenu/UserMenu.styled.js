@@ -3,13 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 100px;
+  margin-right: 20px;
 `
 
-export const Username = styled.p`
-font-weight: 700;
-`
-export const Button = styled.button`
-font-weight: 500;
-padding: 5px;
-`

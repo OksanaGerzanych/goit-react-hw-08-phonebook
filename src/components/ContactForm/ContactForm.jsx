@@ -6,12 +6,10 @@ import { useSelector } from 'react-redux/es/exports';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
-import {
-  FormField,
-  Form,
-  FormButton,
-  ErrorMessage,
-} from 'components/ContactForm/ContactForm.styled';
+import {Form} from 'components/ContactForm/ContactForm.styled';
+import { Box, Button } from '@mui/material';
+import { TextField } from 'formik-mui';
+import { Container } from 'components/RegisterForm/RegisterForm.styled';
 
 
 const ContactSchema = Yup.object().shape({
@@ -45,7 +43,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <div>
+    <Container>
       <Formik
         initialValues={{
           name: '',
@@ -55,19 +53,27 @@ export const ContactForm = () => {
         onSubmit={handleSubmit}
       >
         <Form>
-          <FormField>
-            Name
-            <Field type="text" name="name" />
-            <ErrorMessage name="name" component="span" />
-          </FormField>
-          <FormField>
-            Number
-            <Field type="tel" name="number" />
-            <ErrorMessage name="number" component="span" />
-          </FormField>
-          <FormButton type="submit">Add contact</FormButton>
+         <Box margin={1}>
+            <Field type="text" name="name" component={TextField}
+              label="Name"
+              helperText="Please Enter Name"
+              style={{width: 400}}/>
+           </Box>
+          <Box margin={1}>
+            <Field type="tel" name="number" component={TextField}
+              label="Number"
+              helperText="Please Enter Number"
+              style={{width: 400}}/>
+          </Box>
+          <Box margin={1}>
+            <Button type="submit" sx={{margin: 2}}
+              variant="contained"
+              color="primary"
+              style={{ width: 400 }}>
+              Add contact</Button>
+          </Box>
         </Form>
       </Formik>
-    </div>
+    </Container>
   );
 };
