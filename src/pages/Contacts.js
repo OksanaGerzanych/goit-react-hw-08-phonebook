@@ -7,7 +7,7 @@ import { useDispatch, useSelector  } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts/operations';
 import { selectIsLoading, selectError } from 'redux/contacts/selectors';
-import { Helmet } from 'react-helmet';
+
 
 
 export default function Contacts() {
@@ -22,9 +22,7 @@ export default function Contacts() {
   return (
     <Layout>
       <GlobalStyle />
-      <Helmet>
       <h1>Phonebook</h1>
-      </Helmet>
       <ContactForm />
       <h2>Contacts</h2>
       <Filter />
