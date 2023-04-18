@@ -19,7 +19,7 @@ export const Navigation = () => {
             edge="end"
             color="inherit"
             aria-label="home"
-            sx={{ mr: 7}} 
+            sx={{ mr: 1}} 
            
           >
             <HomeSharpIcon />
@@ -35,7 +35,7 @@ export const Navigation = () => {
               edge="end"
               color="inherit"
               aria-label="home"
-              sx={{ mr: 7}}
+              sx={{ mr: 1}}
             >
               <PermContactCalendarIcon />
             </IconButton>
