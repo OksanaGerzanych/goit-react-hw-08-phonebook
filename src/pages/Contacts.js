@@ -2,7 +2,7 @@ import { ContactForm } from '../components/ContactForm/ContactForm';
 import { ContactList } from '../components/ContactList/ContactList';
 import { Filter } from '../components/Filter/Filter';
 import { GlobalStyle } from '../components/GlobalStyle';
-import { Layout } from '../components/Layout';
+import { Layout, TitlePhonebook, TitleContacts } from '../components/Layout';
 import { useDispatch, useSelector  } from 'react-redux'; 
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts/operations';
@@ -22,9 +22,9 @@ export default function Contacts() {
   return (
     <Layout>
       <GlobalStyle />
-      <h1>Phonebook</h1>
+      <TitlePhonebook>Phonebook</TitlePhonebook>
       <ContactForm />
-      <h2>Contacts</h2>
+      <TitleContacts>Contacts</TitleContacts>
       <Filter />
       <ContactList />
       {isLoading && !error && <b>Request in progress...</b>}

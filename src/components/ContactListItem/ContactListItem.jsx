@@ -1,33 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contacts/operations';
 import Box from '@mui/material/Box';
-
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
-import Grid from '@mui/material/Grid';
-
-import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 export const ContactListItem = ({ contact: { id, name, number } }) => {
   const dispatch = useDispatch();
 
   return (
-    <Box sx={{ flexGrow: 2, maxWidth: 400 }}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
-          <ListItem>
+ 
+    <Box sx={{ flexGrow: 1 }}  style={{ display: 'flex', justifyContent: 'center' }}>
+               <ListItem sx={{width: 420}} textalign={"center"}>
             <ListItemAvatar>
               <Avatar>
-                <FolderIcon />
+                <AccountCircleIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText
@@ -38,10 +33,8 @@ export const ContactListItem = ({ contact: { id, name, number } }) => {
               <DeleteIcon />
             </IconButton>
           </ListItem>
-          ,
-        </Grid>
-      </Grid>
-    </Box>
+         </Box>
+    
   );
 };
 

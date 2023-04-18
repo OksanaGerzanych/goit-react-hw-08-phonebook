@@ -10,20 +10,21 @@ import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 export const Navigation = () => {
   const { isLoggedIn } = useAuth();
   return (
+
     <nav>
       <Toolbar>
         <NavLinkStyled to="/">
           <IconButton
             size="large"
-            edge="start"
+            edge="end"
             color="inherit"
             aria-label="home"
-            sx={{ mr: 2 }}
-                      
+            sx={{ mr: 7}} 
+           
           >
             <HomeSharpIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} marginRight="50px">
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} >
             Home
           </Typography>
         </NavLinkStyled>
@@ -31,10 +32,10 @@ export const Navigation = () => {
           <NavLinkStyled to="/contacts">
             <IconButton
               size="large"
-              edge="start"
+              edge="end"
               color="inherit"
               aria-label="home"
-              sx={{ mr: 2 }}
+              sx={{ mr: 7}}
             >
               <PermContactCalendarIcon />
             </IconButton>
